@@ -1,0 +1,5 @@
+D:\Projects\Indirection\InvocationLayer\bin\Debug\InvocationLayer.dll
+D:\Projects\Indirection\InvocationLayer\bin\Debug\InvocationLayer.pdb
+D:\Projects\Indirection\InvocationLayer\obj\Debug\InvocationLayer.csprojResolveAssemblyReference.cache
+D:\Projects\Indirection\InvocationLayer\obj\Debug\InvocationLayer.dll
+D:\Projects\Indirection\InvocationLayer\obj\Debug\InvocationLayer.pdb

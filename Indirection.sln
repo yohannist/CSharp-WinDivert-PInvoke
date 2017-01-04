@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Indirection", "Indirection\Indirection.csproj", "{39A1C66A-7700-410C-A5E1-975A4501A5AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvocationLayer", "InvocationLayer\InvocationLayer.csproj", "{D131CCEA-9E08-4579-9927-6BFB815779AD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{39A1C66A-7700-410C-A5E1-975A4501A5AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39A1C66A-7700-410C-A5E1-975A4501A5AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39A1C66A-7700-410C-A5E1-975A4501A5AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39A1C66A-7700-410C-A5E1-975A4501A5AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D131CCEA-9E08-4579-9927-6BFB815779AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D131CCEA-9E08-4579-9927-6BFB815779AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D131CCEA-9E08-4579-9927-6BFB815779AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D131CCEA-9E08-4579-9927-6BFB815779AD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
