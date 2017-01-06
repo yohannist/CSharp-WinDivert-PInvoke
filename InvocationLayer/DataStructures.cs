@@ -434,4 +434,67 @@
         public uint OffsetHigh;
     }
 
+
+
+    public class DIVERT_IPHDR_Class
+    {
+
+        /// HdrLength : 4
+        ///Version : 4
+        public uint bitvector1;
+
+        /// UINT8->unsigned char
+        public byte TOS;
+
+        /// UINT16->unsigned short
+        public ushort Length;
+
+        /// UINT16->unsigned short
+        public ushort Id;
+
+        /// UINT16->unsigned short
+        public ushort FragOff0;
+
+        /// UINT8->unsigned char
+        public byte TTL;
+
+        /// UINT8->unsigned char
+        public byte Protocol;
+
+        /// UINT16->unsigned short
+        public ushort Checksum;
+
+        /// UINT32->unsigned int
+        public uint SrcAddr;
+
+        /// UINT32->unsigned int
+        public uint DstAddr;
+
+        public uint HdrLength
+        {
+            get
+            {
+                return ((uint)((this.bitvector1 & 15u)));
+            }
+            set
+            {
+                this.bitvector1 = ((uint)((value | this.bitvector1)));
+            }
+        }
+
+        public uint Version
+        {
+            get
+            {
+                return ((uint)(((this.bitvector1 & 240u)
+                            / 16)));
+            }
+            set
+            {
+                this.bitvector1 = ((uint)(((value * 16)
+                            | this.bitvector1)));
+            }
+        }
+    }
+
 }
