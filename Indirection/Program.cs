@@ -28,22 +28,38 @@ namespace Indirection
                     _udpSize = sizeof(DIVERT_UDPHDR);
                 }
             */
+            Console.CancelKeyPress += (o, e) =>
+            {
+                Console.ForegroundColor = ConsoleColor.White;    
+            };
 
             var handle = WinDivertMethods
                 .WinDivertOpen("true", DIVERT_LAYER.WINDIVERT_LAYER_NETWORK,
                 0, WinDivertConstants.DIVERT_FLAG_SNIFF);
 
             WinDivertMethods.WinDivertSetParam(handle, DIVERT_PARAM.WINDIVERT_PARAM_QUEUE_LEN, 8192);
-
+         
+            
             while (true)
             {
                 var value = WinDivertMethods.WinDivertRecv(handle, packet, MaxPacketLen, pAddress, readLength);
                 if (value == false)
                     continue;
 
+                var size = Marshal.ReadInt32(readLength);
 
-                int size = Marshal.ReadInt32(readLength);
+                var address = (DIVERT_ADDRESS) Marshal.PtrToStructure(pAddress, typeof (DIVERT_ADDRESS));
 
+                if (address.Direction == WinDivertConstants.DIVERT_DIRECTION_INBOUND)
+                {
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.WriteLine("<--------------------");
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                    Console.WriteLine("-------------------->");
+                }
                 /*byte[] managedArray = new byte[size];
                 Marshal.Copy(packet, managedArray, 0, size);
                 Console.WriteLine("Packet read on " + handle + "  " + readLength + " " + _pAddress + Convert.ToBase64String(managedArray));
@@ -90,6 +106,7 @@ namespace Indirection
             {
                 var icmpHdr = (DIVERT_ICMPHDR)Marshal.PtrToStructure(icmpHdrPointer, typeof(DIVERT_ICMPHDR));
                 Console.ForegroundColor = ConsoleColor.DarkYellow;
+                
                 Console.WriteLine("ICMP Type: {0}, Code: {1}, Body: {2}", icmpHdr.Type, icmpHdr.Code, icmpHdr.Body);
             }
 
@@ -97,14 +114,15 @@ namespace Indirection
             {
                 var tcpHdr = (DIVERT_TCPHDR)Marshal.PtrToStructure(tcpHdrPointer, typeof(DIVERT_TCPHDR));
                 Console.ForegroundColor = ConsoleColor.Blue;
-                Console.WriteLine("TCP Source Port: {0} Destination Port: {1}, Sequence Number: {2}, Acknowledgement Number: {3}", tcpHdr.SrcPort, tcpHdr.DstPort, tcpHdr.SeqNum, tcpHdr.AckNum);
+                Console.WriteLine("TCP Source Port: {0} Destination Port: {1}, Sequence Number: {2}, Acknowledgement Number: {3}", tcpHdr.SrcPort.ToString().PadRight(5), tcpHdr.DstPort.ToString().PadRight(5), tcpHdr.SeqNum.ToString().PadRight(5), tcpHdr.AckNum.ToString().PadRight(5));
+                
             }
 
             if (udpHdrPointer != IntPtr.Zero)
             {
                 var udpHdr = (DIVERT_UDPHDR)Marshal.PtrToStructure(udpHdrPointer, typeof(DIVERT_UDPHDR));
                 Console.ForegroundColor = ConsoleColor.DarkCyan;
-                Console.WriteLine("UDP Source Port: {0} Destination Port: {1}, Length: {2}, Checksum: {3}", udpHdr.SrcPort, udpHdr.DstPort, udpHdr.Length, udpHdr.Checksum);
+                Console.WriteLine("UDP Source Port: {0} Destination Port: {1}, Length: {2}, Checksum: {3}", udpHdr.SrcPort.ToString().PadRight(5), udpHdr.DstPort.ToString().PadRight(5), udpHdr.Length, udpHdr.Checksum);
             }
         }
     }

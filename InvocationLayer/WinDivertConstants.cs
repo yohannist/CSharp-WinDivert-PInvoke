@@ -1,6 +1,6 @@
 ﻿namespace InvocationLayer
 {
-    public class WinDivertConstants
+    public static class WinDivertConstants
     {
 
         /// __WINDIVERT_H -> 
