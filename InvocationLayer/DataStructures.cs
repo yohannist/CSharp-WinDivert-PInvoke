@@ -35,7 +35,7 @@
     }
 
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public struct DIVERT_IPHDR
+    public struct IpHeader
     {
 
         /// HdrLength : 4
@@ -97,7 +97,7 @@
     }
 
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public struct DIVERT_IPV6HDR
+    public struct IpV6Header
     {
 
         /// TrafficClass0 : 4
@@ -182,7 +182,7 @@
     }
 
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public struct DIVERT_ICMPHDR
+    public struct IcmpHeader
     {
 
         /// UINT8->unsigned char
@@ -199,7 +199,7 @@
     }
 
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public struct DIVERT_ICMPV6HDR
+    public struct IcmpV6Header
     {
 
         /// UINT8->unsigned char
@@ -216,7 +216,7 @@
     }
 
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public struct DIVERT_TCPHDR
+    public struct TcpHeader
     {
 
         /// UINT16->unsigned short
@@ -377,7 +377,7 @@
     }
 
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
-    public struct DIVERT_UDPHDR
+    public struct UdpHeader
     {
 
         /// UINT16->unsigned short
@@ -393,6 +393,7 @@
         public ushort Checksum;
     }
 
+    /*
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public struct OVERLAPPED
     {
@@ -433,4 +434,5 @@
         /// DWORD->unsigned int
         public uint OffsetHigh;
     }
+    */
 }

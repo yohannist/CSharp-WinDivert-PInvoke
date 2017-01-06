@@ -22,10 +22,10 @@ namespace Indirection
 
                 unsafe
                 {
-                    _ipHdrSize = sizeof(DIVERT_IPHDR);
-                    _icmpSize = sizeof(DIVERT_ICMPHDR);
-                    _tcpSize = sizeof(DIVERT_TCPHDR);
-                    _udpSize = sizeof(DIVERT_UDPHDR);
+                    _ipHdrSize = sizeof(IpHeader);
+                    _icmpSize = sizeof(IcmpHeader);
+                    _tcpSize = sizeof(TcpHeader);
+                    _udpSize = sizeof(UdpHeader);
                 }
             */
             Console.CancelKeyPress += (o, e) =>
@@ -52,13 +52,13 @@ namespace Indirection
 
                 if (address.Direction == WinDivertConstants.DIVERT_DIRECTION_INBOUND)
                 {
-                    Console.ForegroundColor = ConsoleColor.Blue;
-                    Console.WriteLine("<--------------------");
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.WriteLine("<".PadRight(120, '-'));
                 }
                 else
                 {
                     Console.ForegroundColor = ConsoleColor.DarkGreen;
-                    Console.WriteLine("-------------------->");
+                    Console.WriteLine(">".PadLeft(120, '-'));
                 }
                 /*byte[] managedArray = new byte[size];
                 Marshal.Copy(packet, managedArray, 0, size);
@@ -94,7 +94,7 @@ namespace Indirection
 
             if (ipHdrPointer != IntPtr.Zero)
             {
-                var ipHdr = (DIVERT_IPHDR)Marshal.PtrToStructure(ipHdrPointer, typeof(DIVERT_IPHDR));
+                var ipHdr = (IpHeader)Marshal.PtrToStructure(ipHdrPointer, typeof(IpHeader));
 
                 var sourceIpAddress = new IPAddress(BitConverter.GetBytes(ipHdr.SrcAddr)).ToString();
                 var destinationIpAddress = new IPAddress(BitConverter.GetBytes(ipHdr.DstAddr)).ToString();
@@ -104,7 +104,7 @@ namespace Indirection
 
             if (icmpHdrPointer != IntPtr.Zero)
             {
-                var icmpHdr = (DIVERT_ICMPHDR)Marshal.PtrToStructure(icmpHdrPointer, typeof(DIVERT_ICMPHDR));
+                var icmpHdr = (IcmpHeader)Marshal.PtrToStructure(icmpHdrPointer, typeof(IcmpHeader));
                 Console.ForegroundColor = ConsoleColor.DarkYellow;
                 
                 Console.WriteLine("ICMP Type: {0}, Code: {1}, Body: {2}", icmpHdr.Type, icmpHdr.Code, icmpHdr.Body);
@@ -112,15 +112,15 @@ namespace Indirection
 
             if (tcpHdrPointer != IntPtr.Zero)
             {
-                var tcpHdr = (DIVERT_TCPHDR)Marshal.PtrToStructure(tcpHdrPointer, typeof(DIVERT_TCPHDR));
-                Console.ForegroundColor = ConsoleColor.Blue;
+                var tcpHdr = (TcpHeader)Marshal.PtrToStructure(tcpHdrPointer, typeof(TcpHeader));
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("TCP Source Port: {0} Destination Port: {1}, Sequence Number: {2}, Acknowledgement Number: {3}", tcpHdr.SrcPort.ToString().PadRight(5), tcpHdr.DstPort.ToString().PadRight(5), tcpHdr.SeqNum.ToString().PadRight(5), tcpHdr.AckNum.ToString().PadRight(5));
                 
             }
 
             if (udpHdrPointer != IntPtr.Zero)
             {
-                var udpHdr = (DIVERT_UDPHDR)Marshal.PtrToStructure(udpHdrPointer, typeof(DIVERT_UDPHDR));
+                var udpHdr = (UdpHeader)Marshal.PtrToStructure(udpHdrPointer, typeof(UdpHeader));
                 Console.ForegroundColor = ConsoleColor.DarkCyan;
                 Console.WriteLine("UDP Source Port: {0} Destination Port: {1}, Length: {2}, Checksum: {3}", udpHdr.SrcPort.ToString().PadRight(5), udpHdr.DstPort.ToString().PadRight(5), udpHdr.Length, udpHdr.Checksum);
             }
