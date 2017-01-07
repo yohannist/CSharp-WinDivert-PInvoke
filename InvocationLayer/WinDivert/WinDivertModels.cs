@@ -1,4 +1,4 @@
-﻿namespace InvocationLayer
+﻿namespace InvocationLayer.WinDivert
 {
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public struct DIVERT_ADDRESS

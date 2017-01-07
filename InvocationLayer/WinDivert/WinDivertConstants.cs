@@ -1,4 +1,4 @@
-﻿namespace InvocationLayer
+﻿namespace InvocationLayer.WinDivert
 {
     public static class WinDivertConstants
     {
