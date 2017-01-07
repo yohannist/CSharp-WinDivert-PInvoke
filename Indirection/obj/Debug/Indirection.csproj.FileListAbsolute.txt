@@ -1,8 +1,0 @@
-D:\Projects\Indirection\Indirection\bin\Debug\Indirection.exe.config
-D:\Projects\Indirection\Indirection\bin\Debug\Indirection.exe
-D:\Projects\Indirection\Indirection\bin\Debug\Indirection.pdb
-D:\Projects\Indirection\Indirection\obj\Debug\Indirection.csprojResolveAssemblyReference.cache
-D:\Projects\Indirection\Indirection\obj\Debug\Indirection.exe
-D:\Projects\Indirection\Indirection\obj\Debug\Indirection.pdb
-D:\Projects\Indirection\Indirection\bin\Debug\InvocationLayer.dll
-D:\Projects\Indirection\Indirection\bin\Debug\InvocationLayer.pdb

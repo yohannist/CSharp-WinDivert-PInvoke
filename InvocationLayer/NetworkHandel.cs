@@ -5,18 +5,18 @@ using InvocationLayer.WinDivert;
 
 namespace InvocationLayer
 {
-    public class RiverHandle : IDisposable
+    public class NetworkHandel : IDisposable
     {
         private const int Maxbuf = 0xFFFF;
         private const uint MaxPacketLen = Maxbuf;
 
         private IntPtr _handle = IntPtr.Zero;
-        private Action<RiverHandle, bool, Packet> _onReceivePacket;
+        private Action<NetworkHandel, bool, Packet> _onReceivePacket;
 
         private Thread _listeningThread;
         private bool _listeningSentinel;
 
-        private RiverHandle()
+        private NetworkHandel()
         {
             _listeningSentinel = true;
         }
@@ -34,34 +34,34 @@ namespace InvocationLayer
             }    
         }
 
-        public static RiverHandle GetRiverNossle(string filter, DIVERT_LAYER layer, short priority, ulong flags)
+        public static NetworkHandel GetHandle(string filter, DIVERT_LAYER layer, short priority, ulong flags)
         {
-            var riverHandle = new RiverHandle {_handle = WinDivertMethods.WinDivertOpen(filter, layer, priority, flags)};
+            var riverHandle = new NetworkHandel {_handle = WinDivertMethods.WinDivertOpen(filter, layer, priority, flags)};
 
             WinDivertMethods.WinDivertSetParam(riverHandle._handle, DIVERT_PARAM.WINDIVERT_PARAM_QUEUE_LEN, 8192);
 
             return riverHandle;
         }
 
-        public RiverHandle SetParamQueueLen(ulong len)
+        public NetworkHandel SetParamQueueLen(ulong len)
         {
             WinDivertMethods.WinDivertSetParam(_handle, DIVERT_PARAM.WINDIVERT_PARAM_QUEUE_LEN, len);
             return this;
         }
 
-        public RiverHandle SetParamQueueTime(ulong time)
+        public NetworkHandel SetParamQueueTime(ulong time)
         {
             WinDivertMethods.WinDivertSetParam(_handle, DIVERT_PARAM.WINDIVERT_PARAM_QUEUE_TIME, time);
             return this;
         }
 
-        public RiverHandle SetOnReceive(Action<RiverHandle, bool, Packet> func)
+        public NetworkHandel SetOnReceive(Action<NetworkHandel, bool, Packet> func)
         {
             _onReceivePacket = func;
             return this;
         }
 
-        public void StartListening()
+        public void StartReceive()
         {
             _listeningSentinel = true;
             _listeningThread = new Thread(StartLIsteningInternal);

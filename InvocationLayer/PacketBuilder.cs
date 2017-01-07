@@ -50,7 +50,7 @@ namespace InvocationLayer
 
             if (ipv6HdrPointer != IntPtr.Zero)
             {
-                var ipv6Hdr = (IpV6Header)Marshal.PtrToStructure(ipHdrPointer, typeof(IpV6Header));
+                var ipv6Hdr = (IpV6Header)Marshal.PtrToStructure(ipv6HdrPointer, typeof(IpV6Header));
                 packet.IpV6Header = ipv6Hdr;
             }
 
@@ -62,7 +62,7 @@ namespace InvocationLayer
 
             if (icmpv6HdrPointer != IntPtr.Zero)
             {
-                var icmpV6Hdr = (IcmpV6Header)Marshal.PtrToStructure(icmpHdrPointer, typeof(IcmpV6Header));
+                var icmpV6Hdr = (IcmpV6Header)Marshal.PtrToStructure(icmpv6HdrPointer, typeof(IcmpV6Header));
                 packet.IcmpV6Header = icmpV6Hdr;
             }
 

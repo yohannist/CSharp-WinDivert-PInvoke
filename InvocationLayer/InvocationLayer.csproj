@@ -41,7 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="WinDivert\WinDivertModels.cs" />
-    <Compile Include="RiverHandle.cs" />
+    <Compile Include="NetworkHandel.cs" />
     <Compile Include="Packet.cs" />
     <Compile Include="PacketBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
